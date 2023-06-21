@@ -1,13 +1,6 @@
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.*;
 
 public class BoardingPlane{
     public static void main(String[] args) {
@@ -17,7 +10,7 @@ public class BoardingPlane{
         try
         {
             //DO REPLACE THIS PATH IN YOUR OS
-            Scanner sc = new Scanner(new File("/Users/iqmalaizat/Documents/college files/OS/OS_Chapter2/tickets.csv"));
+            Scanner sc = new Scanner(new File("tickets.csv"));
             sc.nextLine(); //SKIPS COLUMN HEADER
             while(sc.hasNextLine())
             {
@@ -44,7 +37,7 @@ public class BoardingPlane{
                 Passenger p = new Passenger(columns[1], ticketType);
                 passengers.add(p);
             }
-            ArrangePassenger ap = new ArrangePassenger(passengers);
+            ArrangePassenger.sort(passengers);
             
 
         }
@@ -52,19 +45,6 @@ public class BoardingPlane{
         {
             System.out.println(e.toString());
         }
-
-        /*
-        ;
-
-        passengers.add(new Passenger("Iqmal", TicketType.FIRST_CLASS));
-        
-        passengers.add(new Passenger("Bin", TicketType.ECONOMY));
-        passengers.add(new Passenger("Zamri", TicketType.BUSINESS_CLASS));
-        passengers.add(new Passenger("Aizat", TicketType.FIRST_CLASS));
-
-        ArrangePassenger ap = new ArrangePassenger(passengers);
-        */
-        
 
     }
 }
@@ -97,34 +77,25 @@ class Passenger{
 class ArrangePassenger{
     //For this method we will use priority + FCFS
 
-    ArrayList<Passenger> passengers = new ArrayList<>();
-    ArrayList<Passenger> queue = new ArrayList<>();
-
-    ArrangePassenger(ArrayList<Passenger> passengers)
+    public static void sort(ArrayList<Passenger> passengers)
     {
-        this.passengers = passengers;
-        sort();
-        
-    }
-
-    void sort()
-    {
-        //we will print out the boarding order
+        //we will print out arrival order
+        System.out.println("ARIAVAL ORDER");
+        System.out.printf("%-4s %-25s %-20s\n","NO", "NAME","TICKET TYPE" );
         for (Passenger passenger : passengers)
-        {
-            System.out.printf("NAME = %s, Ticket type = %s\n", passenger.getName(), passenger.getTicketType().name());
+        {   
+            System.out.printf("%-4s %-25s %-20s\n", passengers.indexOf(passenger)+1 ,passenger.getName(), passenger.getTicketType().name());
         }
-        //start to sort passengers by priority
+        //start to sort passengers by priority for the boarding order
         passengers.sort((o1, o2) -> o1.getTicketType().compareTo(o2.getTicketType()));
+        System.out.println("\n\n");
 
-        for(int i = 0; i < passengers.size(); i++)
-        {
-            queue.add(passengers.get(i));
-        }
-        System.out.println("AFTER SORT");
-        for (Passenger passenger : queue)
-        {
-            System.out.printf("NAME = %s, Ticket type = %s\n", passenger.getName(), passenger.getTicketType().name());
+        //print out the Boarding order
+        System.out.println("BOARDING ORDER");
+        System.out.printf("%-4s %-25s %-20s\n","NO", "NAME","TICKET TYPE" );
+        for (Passenger passenger : passengers)
+        {   
+            System.out.printf("%-4s %-25s %-20s\n", passengers.indexOf(passenger)+1 ,passenger.getName(), passenger.getTicketType().name());
         }
     }
 
