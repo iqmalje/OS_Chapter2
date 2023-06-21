@@ -60,7 +60,7 @@ public class Main {
                     case "BUSINESS_CLASS":
                     ticketType = TicketType.BUSINESS_CLASS;
                     break;
-                    case "ECONOMY_PLUS":
+                    case "PREMIUM_ECONOMY":
                     ticketType = TicketType.PREMIUM_ECONOMY;
                     break;
                     case "ECONOMY":
