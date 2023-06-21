@@ -7,5 +7,5 @@ We'll use CSV for storing ticket information
 
 Check out the CSV layout under tickets.csv file, the layout is as follow
 
-| ID | Name | BoughtAt | TicketType |
-| -- | ---- | -------- | ---------- |
+| ID | Name |TicketType|Seat|Distance|
+| -- | ---- | ---------- | --- | --- |
