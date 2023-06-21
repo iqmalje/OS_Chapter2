@@ -1,13 +1,16 @@
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.*;
+import javax.xml.*;
 
 public class BoardingPlane{
     public static void main(String[] args) {
@@ -23,6 +26,12 @@ public class BoardingPlane{
             {
                 String line = sc.nextLine();
                 String[] columns = line.split(",");
+                
+                
+                String string1 = columns[2];
+                var dateBought = OffsetDateTime.parse( string1 );
+
+
                 TicketType ticketType = TicketType.BUSINESS_CLASS; // FOR INITIALIZATION
                 switch(columns[3])
                 {
@@ -41,7 +50,7 @@ public class BoardingPlane{
                     
                 }
 
-                Passenger p = new Passenger(columns[1], ticketType);
+                Passenger p = new Passenger(columns[1], ticketType, dateBought);
                 passengers.add(p);
             }
             ArrangePassenger ap = new ArrangePassenger(passengers);
@@ -79,17 +88,21 @@ enum TicketType{
 class Passenger{
     private String name;
     private TicketType ticketType;
+    private OffsetDateTime boughtAt;
 
-    Passenger(String name, TicketType ticketType)
+    Passenger(String name, TicketType ticketType, OffsetDateTime boughtAt)
     {
         this.name = name;
         this.ticketType = ticketType;
+        this.boughtAt = boughtAt;
     }
 
 
     String getName() {return name;}
 
     TicketType getTicketType() {return ticketType;}
+
+    OffsetDateTime getBoughtAt() { return boughtAt; }
 
     
 }
@@ -109,22 +122,21 @@ class ArrangePassenger{
 
     void sort()
     {
-        //we will print out the boarding order
-        for (Passenger passenger : passengers)
-        {
-            System.out.printf("NAME = %s, Ticket type = %s\n", passenger.getName(), passenger.getTicketType().name());
-        }
-        //start to sort passengers by priority
+        //FIRST we sort by dates, as the same priority will proritize who came first
+        passengers.sort((o1, o2) -> o1.getBoughtAt().compareTo(o2.getBoughtAt()));
+        //start to sort passengers by TICKET TYPE
         passengers.sort((o1, o2) -> o1.getTicketType().compareTo(o2.getTicketType()));
 
         for(int i = 0; i < passengers.size(); i++)
         {
             queue.add(passengers.get(i));
         }
-        System.out.println("AFTER SORT");
+        System.out.println("BOARDING PRIORITY");
         for (Passenger passenger : queue)
         {
-            System.out.printf("NAME = %s, Ticket type = %s\n", passenger.getName(), passenger.getTicketType().name());
+            OffsetDateTime boughtAt = passenger.getBoughtAt();
+            
+            System.out.printf("NAME = %s, Ticket type = %s, Bought At = %d/%d/%d %02d:%02d %s\n", passenger.getName(), passenger.getTicketType().name(), boughtAt.getDayOfMonth(), boughtAt.getMonthValue(), boughtAt.getYear(), boughtAt.getHour(), boughtAt.getMinute(), boughtAt.getHour() < 12 ? "AM" : "PM");
         }
     }
 
