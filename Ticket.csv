@@ -13,7 +13,7 @@ ID,Name,TicketType,Seat,Distance
 12,Laura Rodriguez,BUSINESS_CLASS,B9,9
 13,Robert Martinez,FIRST_CLASS,E4,4
 14,Amanda Lewis,ECONOMY,B25,25
-15,Daniel Hall,PREMIUM_ECONOMY,F12,12
+15,Daniel Hall,PREMIUM_ECONOMY,F12,12r
 16,Michelle Green,PREMIUM_ECONOMY,F21,21
 17,Joseph Perez,ECONOMY,D22,22
 18,Ashley Turner,FIRST_CLASS,F4,4

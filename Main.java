@@ -68,7 +68,7 @@ public class Main {
                     break;
                     
                 }
-                Passenger p = new Passenger(columns[1], ticketType, columns[3], Integer.parseInt(columns[4]) );
+                Passenger p = new Passenger(Integer.parseInt(columns[0]),columns[1], ticketType, columns[3], Integer.parseInt(columns[4]) );
                 passengers.add(p);
             }
         }catch (Exception e){
