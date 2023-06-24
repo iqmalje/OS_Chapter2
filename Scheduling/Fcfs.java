@@ -16,4 +16,6 @@ public class Fcfs {
             System.out.printf("%-4s %-25s %-20s %-4s\n", passengers.indexOf(passenger)+1 ,passenger.getName(), passenger.getTicketType().toString(), passenger.getSeat());
         }
     }
+
+    
 }

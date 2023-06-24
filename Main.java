@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Entities.Luggage;
 import Entities.Passenger;
 import Entities.TicketType;
 import Scheduling.*;
@@ -10,8 +11,9 @@ import Scheduling.*;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Passenger> passengers = new ArrayList<>();
+        ArrayList<Luggage> luggages = new ArrayList<>();
         loadPassenger(passengers);
-        print(passengers);
+        loadLuggages(luggages);
 
         System.out.print("Enter [1] FCFS [2] Priority [3] SJN :");
         Scanner input = new Scanner(System.in);
@@ -23,7 +25,7 @@ public class Main {
                 Priority.sort(passengers);
                 break;
             case 3:
-                ShortestJobNext.sort(passengers);
+                ShortestJobNext.lightestLuggageFirst(luggages);;
                 break;
             default:
                 System.out.println("UwU daddy piwck somwwnethuing bewter next time 0w0");
@@ -70,6 +72,24 @@ public class Main {
                 }
                 Passenger p = new Passenger(Integer.parseInt(columns[0]),columns[1], ticketType, columns[3], Integer.parseInt(columns[4]) );
                 passengers.add(p);
+            }
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+    public static void loadLuggages(ArrayList<Luggage> luggages)
+    {
+        try{
+            //DO REPLACE THIS PATH IN YOUR OS
+            Scanner sc = new Scanner(new File("Luggage.csv"));
+            sc.nextLine(); //SKIPS COLUMN HEADER
+            while(sc.hasNextLine())
+            {
+                
+                String line = sc.nextLine();
+                String[] columns = line.split(",");
+                //Passenger ID,Luggage ID,Luggage Weight (kg),Luggage Color
+                luggages.add(new Luggage(Integer.parseInt(columns[0]), (columns[1]), Float.parseFloat(columns[2]), columns[3]));
             }
         }catch (Exception e){
             System.out.println(e.toString());
