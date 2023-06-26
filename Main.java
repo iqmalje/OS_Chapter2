@@ -14,7 +14,7 @@ public class Main {
         ArrayList<Luggage> luggages = new ArrayList<>();
         loadPassenger(passengers);
         loadLuggages(luggages);
-
+        
         System.out.print("Enter [1] FCFS [2] Priority [3] SJN [4] Buy Ticket FCFS:");
         Scanner input = new Scanner(System.in);
         switch (Integer.parseInt(input.nextLine())) {
