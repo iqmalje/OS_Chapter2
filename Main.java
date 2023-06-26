@@ -15,7 +15,7 @@ public class Main {
         loadPassenger(passengers);
         loadLuggages(luggages);
 
-        System.out.print("Enter [1] FCFS [2] Priority [3] SJN :");
+        System.out.print("Enter [1] FCFS [2] Priority [3] SJN [4] Buy Ticket FCFS:");
         Scanner input = new Scanner(System.in);
         switch (Integer.parseInt(input.nextLine())) {
             case 1:
@@ -26,6 +26,12 @@ public class Main {
                 break;
             case 3:
                 ShortestJobNext.lightestLuggageFirst(luggages);;
+                break;
+            case 4:
+                BuyTicketFCFS.buyticket();
+                passengers.clear();
+                loadPassenger(passengers);
+                print(passengers);
                 break;
             default:
                 System.out.println("UwU daddy piwck somwwnethuing bewter next time 0w0");
