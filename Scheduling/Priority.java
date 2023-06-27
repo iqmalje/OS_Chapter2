@@ -18,5 +18,14 @@ public class Priority {
         {   
             System.out.printf("%-4d %-25s %-20s %-4s\n", passenger.getID() ,passenger.getName(), passenger.getTicketType().toString(), passenger.getSeat());
         }
+        try
+        {
+            System.in.read();
+        }
+        catch (Exception e)
+        {
+            
+        }
+        
     }
 }

@@ -10,33 +10,43 @@ import Scheduling.*;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Passenger> passengers = new ArrayList<>();
-        ArrayList<Luggage> luggages = new ArrayList<>();
-        loadPassenger(passengers);
-        loadLuggages(luggages);
-        
-        System.out.print("Enter [1] FCFS [2] Priority [3] SJN [4] Buy Ticket FCFS:");
-        Scanner input = new Scanner(System.in);
-        switch (Integer.parseInt(input.nextLine())) {
-            case 1:
-                Fcfs.sort(passengers);
-                break;
-            case 2:
-                Priority.sort(passengers);
-                break;
-            case 3:
-                ShortestJobNext.lightestLuggageFirst(luggages);;
-                break;
-            case 4:
-                BuyTicketFCFS.buyticket();
-                passengers.clear();
-                loadPassenger(passengers);
-                print(passengers);
-                break;
-            default:
-                System.out.println("UwU daddy piwck somwwnethuing bewter next time 0w0");
-                break;
+        while(true)
+        {
+            ArrayList<Passenger> passengers = new ArrayList<>();
+            ArrayList<Luggage> luggages = new ArrayList<>();
+            loadPassenger(passengers);
+            loadLuggages(luggages);
+            System.out.printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.printf("Welcome to MAS Airplane Boarding and Buying System! Please pick an option below\n");
+            System.out.println("[1] Buy tickets for passengers (FCFS)");
+            System.out.println("[2] Boarding List for Passengers (PRIORITY)");
+            System.out.println("[3] Boarding List for Luggages (SJF)");
+            System.out.println("[4] Ticket Cancellation");
+            System.out.printf("\nEnter your options : ");
+            Scanner input = new Scanner(System.in);
+            Fcfs fcfs = new Fcfs();
+            switch (Integer.parseInt(input.nextLine())) {
+                case 1:
+                    fcfs.buyTicket();
+                    break;
+                case 2:
+                    Priority.sort(passengers);
+                    break;
+                case 3:
+                    ShortestJobNext.lightestLuggageFirst(luggages);;
+                    break;
+                case 4:
+                    BuyTicketFCFS.buyticket();
+                    passengers.clear();
+                    loadPassenger(passengers);
+                    print(passengers);
+                    break;
+                default:
+                    System.out.println("Wrong input, please try again");
+                    break;
+            }
         }
+       
         
     }
 

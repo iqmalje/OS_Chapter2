@@ -31,7 +31,6 @@ ID,Name,TicketType,Seat,Distance
 30,Stephanie Martinez,ECONOMY,C25,25
 31,Anthony Nelson,FIRST_CLASS,A2,2
 32,Mary Phillips,BUSINESS_CLASS,F9,9
-33,Jason Flores,ECONOMY,F36,36
 34,Lisa Sanchez,PREMIUM_ECONOMY,C20,20
 35,David Rodriguez,BUSINESS_CLASS,E6,6
 37,Richard Ross,ECONOMY,B23,23
@@ -116,4 +115,5 @@ ID,Name,TicketType,Seat,Distance
 116,Rebecca,ECONOMY,D24,24
 117,Nora,ECONOMY,A26,26
 118,Emily,ECONOMY,D2,2
-119,Kai,ECONOMY,C32,32
+119,Kai,ECONOMY,C32,3
+120,Iqmal,FIRST_CLASS,A1,1
