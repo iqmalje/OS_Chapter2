@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import Entities.Luggage;
 import Entities.Passenger;
 import Entities.TicketType;
 
 public class Fcfs {
 
     ArrayList<Passenger> passengersBuy = new ArrayList<>();
+    ArrayList<Luggage> luggages = new ArrayList<>();
     private int getLastID()
     {
         try
@@ -22,9 +24,9 @@ public class Fcfs {
             sc.nextLine(); // SKIPS HEADER
             while(sc.hasNextLine())
             {
-            String line = sc.nextLine();
-            String[] columns = line.split(",");
-            id = Integer.parseInt(columns[0]);
+                String line = sc.nextLine();
+                String[] columns = line.split(",");
+                id = Integer.parseInt(columns[0]);
             }
             System.out.println(id);
             return id;
@@ -34,6 +36,7 @@ public class Fcfs {
         }
        
     }
+    
     public void buyTicket()
     {
         Scanner in = new Scanner(System.in);
@@ -75,8 +78,20 @@ public class Fcfs {
             int distance = in.nextInt();
             in.nextLine();
 
+            //ask for luggage 
+            System.out.print("Luggage ID : ");
+            String luggageID = in.nextLine();
+            System.out.print("Luggage weight : ");
+            float weight = in.nextFloat();
+            in.nextLine();
+            System.out.print("Luggage color : ");
+            String color = in.nextLine();
+
+
             passengersBuy.add(new Passenger(startingID, name, tt, seatnumber, distance));
+            luggages.add(new Luggage(startingID, luggageID, weight, color));
             startingID++;
+
             counter++;
             System.out.println(startingID);
         }
@@ -86,11 +101,24 @@ public class Fcfs {
             FileWriter fw = new FileWriter(new File("Ticket.csv"), true);
             BufferedWriter br = new BufferedWriter(fw);
             for (Passenger passenger : passengersBuy) {
-                br.write("\n" + passenger.getID() + "," + passenger.getName() + "," + passenger.getTicketType().toString() + "," + passenger.getSeat() + "," + passenger.getDistance() + "\n") ;
+                br.write("\n" + passenger.getID() + "," + passenger.getName() + "," + passenger.getTicketType().toString() + "," + passenger.getSeat() + "," + passenger.getDistance()) ;
             }
             br.close();
             fw.close();
-            System.out.println("Successfully appended!");
+            System.out.println("Successfully appended passenger!");
+            System.out.println("Now appending luggages");
+
+            fw = new FileWriter(new File("Luggage.csv"), true);
+            br = new BufferedWriter(fw);
+            //Passenger ID,Luggage ID,Luggage Weight (kg),Luggage Color
+            for (int i = 0; i < luggages.size(); i++) {
+                var luggage = luggages.get(i);
+                br.write(String.format("\n%d,%s,%f,%s", passengersBuy.get(i).getID(), luggage.getLuggageId(), luggage.getLuggageWeight(), luggage.getLuggageColor())) ;
+            }
+            System.out.println("Successfully appended luggages!");
+            br.close();
+            fw.close();
+
             
         }
         catch (Exception e)

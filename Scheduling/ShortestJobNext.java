@@ -35,5 +35,11 @@ public class ShortestJobNext {
         {   
             System.out.printf("%-15d %-15s %-15.2f %-9s\n", luggage.getPassengerID(), luggage.getLuggageId(), luggage.getLuggageWeight(), luggage.getLuggageColor());
         }
+
+        try {
+            System.in.read();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 }
