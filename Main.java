@@ -30,6 +30,9 @@ public class Main {
             switch (Integer.parseInt(input.nextLine())) {
                 case 1:
                     fcfs.buyTicket();
+                    loadPassenger(passengers);
+                    System.out.println("\n\nBelow is the ticket bought by passengers (FCFS)");
+                    Fcfs.sort(passengers);
                     break;
                 case 2:
                     Priority.sort(passengers);
