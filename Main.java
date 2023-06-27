@@ -15,10 +15,19 @@ public class Main {
         loadPassenger(passengers);
         loadLuggages(luggages);
         
-        System.out.print("Enter [1] FCFS [2] Priority [3] SJN [4] Buy Ticket FCFS:");
+        System.out.println("------------------------");
+        System.out.println(" [1] FCFS BOARDING");
+        System.out.println(" [2] PRIORITY BOARDING");
+        System.out.println(" [3] SJN BOARDING");
+        System.out.println(" [4] CANCEL TICET");
+        System.out.println("------------------------");
+        System.out.print("INPUT :");
         Scanner input = new Scanner(System.in);
         switch (Integer.parseInt(input.nextLine())) {
             case 1:
+                BuyTicketFCFS.buyticket();
+                passengers.clear();
+                loadPassenger(passengers);
                 Fcfs.sort(passengers);
                 break;
             case 2:
@@ -28,13 +37,10 @@ public class Main {
                 ShortestJobNext.lightestLuggageFirst(luggages);;
                 break;
             case 4:
-                BuyTicketFCFS.buyticket();
-                passengers.clear();
-                loadPassenger(passengers);
-                print(passengers);
+                // ticket cancellation
                 break;
             default:
-                System.out.println("UwU daddy piwck somwwnethuing bewter next time 0w0");
+                System.out.println("Error: Please choose a valid option");
                 break;
         }
         

@@ -9,13 +9,18 @@ import Entities.TicketType;
 public class BuyTicketFCFS {
     public static String getrandseat() {
         Random rand = new Random();
+        // generate a random number between 1 - 38
         int seatnum = rand.nextInt(38 - 1) + 1;
+        // generate a random char between A - E
         char seatchar = (char) (rand.nextInt(6) + 'A');
+        // combine the seatchar,seatnum to produce a seat
         String seat = seatchar + Integer.toString(seatnum);
+        // return the value
         return seat;
     }
 
     public static void buyticket() {
+        // list of names for random name generation
         String[] names = {
             "Alice", "Bob", "Charlie", "David", "Emma", "Frank", "Grace", "Henry", "Isabella", "Jack",
             "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Ruby", "Samuel", "Taylor",
@@ -39,11 +44,15 @@ public class BuyTicketFCFS {
             "Xavier", "Ximena", "Yara", "Yasmine", "Zachary", "Zoe"
         };
         Random random = new Random();
+        // load the values of the ticket type
         TicketType[] types = TicketType.values();
         int lastid = 0;
+        // store all the seats already taken
         ArrayList<String> seats = new ArrayList<>();
+        // store the new passengers as they buy the tickets
         ArrayList<Passenger> queue = new ArrayList<Passenger>(10);
         try {
+            // load the passanges from the csv 
             Scanner reader = new Scanner(new File("Ticket.csv"));
             reader.nextLine();
             while (reader.hasNextLine()) {
@@ -53,11 +62,15 @@ public class BuyTicketFCFS {
                 seats.add(columns[3]);
             }
             reader.close();
+            // generate 10 new passsagners and store in queue 
             for (int i = 0; i < 10; i++) {
+                // generate a random seat
                 String seat = getrandseat();
+                // check if seat is already taken
                 while (seats.contains(seat)) {
                     seat = getrandseat();
                 }
+                // evaluate the class/priority for the seat
                 int num = Integer.parseInt(seat.substring(1)); 
                 int index = 0;
                 if(num >= 5 && num <= 10){
@@ -67,6 +80,7 @@ public class BuyTicketFCFS {
                 }else{
                     index = 3;
                 }
+                // store all the generated vlaues one by one on to the queue
                 queue.add(new Passenger(lastid+1+ i, names[random.nextInt(183)], types[index],seat,num));
                 
             }
@@ -74,6 +88,7 @@ public class BuyTicketFCFS {
             System.out.println(e.toString());
         }
         try {
+            // write the passangers in queue in the order they were created
         FileWriter writer = new FileWriter("Ticket.csv",true);
         writer.write("\n");
         for(Passenger x: queue){
