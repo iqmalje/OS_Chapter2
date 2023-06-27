@@ -11,7 +11,7 @@ import Entities.TicketType;
 public class Fcfs {
     public static void sort(ArrayList<Passenger> passengers){
     //print out the Boarding order
-    System.out.println("BOARDING ORDER");
+    System.out.println("TICKET BUYING ORDER");
     System.out.printf("%-4s %-25s %-20s %-4s\n","NO", "NAME","TICKET TYPE", "SEAT" );
     for (Passenger passenger : passengers)
     {   

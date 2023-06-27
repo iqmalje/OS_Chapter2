@@ -99,3 +99,5 @@ ID,Name,TicketType,Seat,Distance
 99,Michael Thompson,ECONOMY,E35,35
 100,Quentin,PREMIUM_ECONOMY,C15,15
 101,Shurk Khan,ECONOMY,E25,25
+102,Rahul Ghandi,ECONOMY,C33,33
+103,Narender Modi,PREMIUM_ECONOMY,C14,14
