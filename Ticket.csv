@@ -9,7 +9,6 @@ ID,Name,TicketType,Seat,Distance
 8,Amy Anderson,FIRST_CLASS,C1,1
 9,James Thompson,ECONOMY,F28,28
 10,Jennifer White,FIRST_CLASS,D1,1
-<<<<<<< HEAD
 11,Matthew Lee,PREMIUM_ECONOMY,A19,19
 12,Laura Rodriguez,BUSINESS_CLASS,B9,9
 13,Robert Martinez,FIRST_CLASS,E4,4
@@ -99,6 +98,4 @@ ID,Name,TicketType,Seat,Distance
 98,Jennifer Moore,BUSINESS_CLASS,C9,9
 99,Michael Thompson,ECONOMY,E35,35
 100,Quentin,PREMIUM_ECONOMY,C15,15
-=======
-11,Iqmal,FIRST_CLASS,A1,1
->>>>>>> 1979a13afb2d3acb9857f6f4a7877eb6d7e969cd
+101,Shurk Khan,ECONOMY,E25,25
